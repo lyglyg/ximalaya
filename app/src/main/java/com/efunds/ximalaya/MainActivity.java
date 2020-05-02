@@ -58,7 +58,6 @@ public class MainActivity extends FragmentActivity {
         commonNavigator.setAdjustMode(true);
         mMagicIndicator.setNavigator(commonNavigator);
 
-
         //初始化ViewPager和设置ViewPager的适配器
         mViewPager = this.findViewById(R.id.main_viewpager);
         FragmentManager fragmentManager = getSupportFragmentManager();

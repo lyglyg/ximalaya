@@ -1,12 +1,16 @@
 package com.efunds.ximalaya.base;
 
 import android.app.Application;
+import android.os.Handler;
 
 import com.efunds.ximalaya.utils.LogUtils;
 import com.ximalaya.ting.android.opensdk.constants.DTransferConstants;
 import com.ximalaya.ting.android.opensdk.datatrasfer.CommonRequest;
 
 public class BaseApplication extends Application {
+
+    private static Handler mHandler = null;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -23,5 +27,10 @@ public class BaseApplication extends Application {
             mXimalaya.init(this,mAppSecret);
         }
         LogUtils.init(this.getPackageName(),false);
+
+        mHandler = new Handler();
+    }
+    public static Handler getHandler(){
+        return mHandler;
     }
 }

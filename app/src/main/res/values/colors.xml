@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="bg_main_color">#FA7254</color>
+    
+    <color name="item_gray_color">#9E9292</color>
+
+    <color name="item_bg_gray_color">#FFF8F8F8</color>
 </resources>

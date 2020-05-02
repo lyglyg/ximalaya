@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!--
+    corners：圆角弧度
+    solid：里面背景
+    stroke：外框背景
+    padding：文字与边框的距离
+    shape：背景整体类型，取值有
+            rectangle（矩形）
+            oval（椭圆形）
+             line（线性）
+             ring（环形）
+    -->
+    <stroke android:color="@android:color/white" />
+    <solid android:color="@android:color/white" />
+
+    <corners android:radius="5dp" />
+
+</shape>

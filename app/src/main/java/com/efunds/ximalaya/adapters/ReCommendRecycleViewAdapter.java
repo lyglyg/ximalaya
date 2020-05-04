@@ -38,6 +38,14 @@ public class ReCommendRecycleViewAdapter extends RecyclerView.Adapter<ReCommendR
         //这里是设置数据
         holder.itemView.setTag(position);
         holder.setData(mDataList.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mOnRecommendItemClickListener != null){
+                    mOnRecommendItemClickListener.onItemClick((int) v.getTag(),mDataList.get((int) v.getTag()));
+                }
+            }
+        });
     }
 
     @Override
@@ -92,5 +100,18 @@ public class ReCommendRecycleViewAdapter extends RecyclerView.Adapter<ReCommendR
                 albumCoverIv.setImageResource(R.mipmap.ic_launcher);
             }
         }
+    }
+
+    private OnRecommendItemClickListener mOnRecommendItemClickListener;
+
+    public void setOnRecommendItemClickListener(OnRecommendItemClickListener onRecommendItemClickListener) {
+        this.mOnRecommendItemClickListener = onRecommendItemClickListener;
+    }
+
+    /**
+     * 当点击RecycleView的Item回调的方法，这里是不
+     */
+    public interface OnRecommendItemClickListener{
+        void onItemClick(int position, Album album);
     }
 }

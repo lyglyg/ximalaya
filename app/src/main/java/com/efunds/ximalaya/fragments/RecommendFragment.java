@@ -1,5 +1,6 @@
 package com.efunds.ximalaya.fragments;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.efunds.ximalaya.R;
+import com.efunds.ximalaya.activity.AlbumDetailActivity;
 import com.efunds.ximalaya.adapters.ReCommendRecycleViewAdapter;
 import com.efunds.ximalaya.base.BaseFragment;
 import com.efunds.ximalaya.interfaces.IRecommendViewCallback;
+import com.efunds.ximalaya.presenters.AlbumDetailPresenter;
 import com.efunds.ximalaya.presenters.RecommendPresenter;
+import com.efunds.ximalaya.utils.LogUtils;
 import com.efunds.ximalaya.views.UILoader;
 import com.ximalaya.ting.android.opensdk.model.album.Album;
 
@@ -24,7 +28,7 @@ import java.util.List;
 /**
  * 推荐页面
  */
-public class RecommendFragment extends BaseFragment implements IRecommendViewCallback, UILoader.OnRetryClickListener {
+public class RecommendFragment extends BaseFragment implements IRecommendViewCallback, UILoader.OnRetryClickListener, ReCommendRecycleViewAdapter.OnRecommendItemClickListener {
     private static final String TAG = "RecommendFragment";
     private RecyclerView mRvRecommendList;
     private ReCommendRecycleViewAdapter mReCommendRecycleViewAdapter;
@@ -32,11 +36,11 @@ public class RecommendFragment extends BaseFragment implements IRecommendViewCal
     private RecommendPresenter mRecommendPresenter;
 
     @Override
-    protected View subFragmentViewLoader(final LayoutInflater inflater, final ViewGroup container) {
+    protected View subFragmentViewLoader(final LayoutInflater inflater, ViewGroup container) {
 
         mUILoader = new UILoader(getContext()) {
             @Override
-            protected View getSuccessView() {
+            protected View getSuccessView(ViewGroup container) {
                 View successView = createSuccessView(inflater, container);
                 return successView;
             }
@@ -82,6 +86,10 @@ public class RecommendFragment extends BaseFragment implements IRecommendViewCal
         //设置recycleView的适配器
         mReCommendRecycleViewAdapter = new ReCommendRecycleViewAdapter();
         mRvRecommendList.setAdapter(mReCommendRecycleViewAdapter);
+
+        //设置recycleView的item的点击事件处理
+        mReCommendRecycleViewAdapter.setOnRecommendItemClickListener(this);
+
         return rootView;
     }
 
@@ -118,5 +126,14 @@ public class RecommendFragment extends BaseFragment implements IRecommendViewCal
         if(mRecommendPresenter !=null ){
             mRecommendPresenter.getRecommendListData();
         }
+    }
+
+    @Override
+    public void onItemClick(int position, Album album) {
+        LogUtils.d(TAG,"position:-->"+position);
+        LogUtils.d(TAG,"Album:-->"+album);
+        AlbumDetailPresenter.getInstance().setTargetAlbum(album);
+        Intent intent = new Intent(getContext(), AlbumDetailActivity.class);
+        startActivity(intent);
     }
 }

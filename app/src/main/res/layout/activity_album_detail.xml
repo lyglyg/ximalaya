@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray_color">
+
+    <ImageView
+        android:id="@+id/iv_large_cover"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:id="@+id/ll_subscription_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/iv_large_cover"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical|right">
+
+        <TextView
+            android:id="@+id/tv_album_subscription"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape_subscription_bg"
+            android:gravity="center"
+            android:text="+订阅"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_play_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_subscription_container"
+        android:background="@color/bg_gray_color"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_play"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/play_black_press" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/iv_play"
+            android:text="继续播放"
+            android:textColor="@color/album_detail_text_gray_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/iv_arrow"
+            android:text="选集"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="16dp"
+            android:layout_height="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/arrow_icon" />
+    </RelativeLayout>
+
+    <com.efunds.ximalaya.views.RoundRectImageView
+        android:id="@+id/iv_small_cover"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/iv_large_cover"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="-40dp"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/iv_large_cover"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="-35dp"
+        android:layout_toRightOf="@id/iv_small_cover"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_album_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_album_autor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text=""
+            android:textColor="@color/album_detail_text_gray_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_album_detail_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_play_container" />
+
+</RelativeLayout>

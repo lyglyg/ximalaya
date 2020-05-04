@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -74,7 +75,7 @@ public abstract class UILoader extends FrameLayout {
         mLoadingView.setVisibility(mCurrentUIStatus == UIStatus.LOADING ? VISIBLE : GONE);
 
         if(mSuccessView == null){
-            mSuccessView = getSuccessView();
+            mSuccessView = getSuccessView(this);
             addView(mSuccessView);
         }
         //根据状态设置是否可见
@@ -96,11 +97,18 @@ public abstract class UILoader extends FrameLayout {
 
     }
 
+    /**
+     * 数据为空加载的页面
+     * @return
+     */
     private View getEmptyView() {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_empty_view,this,false);
         return view;
     }
 
+    /**
+     * 网络异常加载的页面
+     */
     private View getNetWorkErrorView() {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_network_error_view, this, false);
         view.findViewById(R.id.network_error_ll).setOnClickListener(new OnClickListener() {
@@ -127,8 +135,11 @@ public abstract class UILoader extends FrameLayout {
     /**
      *
      */
-    protected abstract View getSuccessView();
+    protected abstract View getSuccessView(ViewGroup container);
 
+    /**
+     * 网络异常，点击重试的回调方法
+     */
     public interface OnRetryClickListener{
        public void onRetryClick();
     }

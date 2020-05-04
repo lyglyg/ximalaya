@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/bg_main_color</item>
     </style>
 
+    <!--这个主题是用来隐藏statusbar的-->
+    <style name="AppHideStatusBarTheme" parent="AppTheme">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 </resources>
